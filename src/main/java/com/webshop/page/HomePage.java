@@ -11,6 +11,8 @@ public class HomePage extends DriverScript {
 
     @FindBy(linkText = "Log in") private WebElement loginLink;
     @FindBy(linkText = "Log out") private WebElement logoutLink;
+    @FindBy(xpath="(//a[contains(text(),'Computers')])[1]") private WebElement computersMenu;
+    @FindBy(xpath = "(//a[contains(text(),'Gift Cards')])[1]") private WebElement giftCardsMenu;
 
     // ============================== Page Initialization ===================================== //
 
@@ -19,6 +21,14 @@ public class HomePage extends DriverScript {
     }
 
     // ============================== Page Actions/Methods ===================================== //
+
+    public void clickGiftCardsMenu() {
+        giftCardsMenu.click();
+    }
+
+    public void clickComputersMenu() {
+        computersMenu.click();
+    }
 
     public String getHomePageTitle() {
         String title = driver.getTitle();
