@@ -59,7 +59,7 @@ public class LoginPageTest extends BaseTest  {
         logger.pass("verified the login error message");
     }
 
-    @Test(priority = 2)
+    @Test(priority = 4,enabled = false)
     public void testValidLoginFunctionScreen() {
         logger= report.createTest("Test Login Functionality with Screenshot");
         homePage.clickLoginLink();
@@ -67,6 +67,27 @@ public class LoginPageTest extends BaseTest  {
         loginPage.enterEmailID("selauto1@test.com");
         logger.pass("enter email id");
         loginPage.enterPassword("00000");
+        logger.pass("enter password");
+        loginPage.clickLoginButton();
+        logger.pass("click on login button");
+        homePage.isLogoutLinkDisplayed();
+        Assert.assertTrue(homePage.isLogoutLinkDisplayed());
+        logger.pass("verify logout link is displayed");
+        String title = homePage.getHomePageTitle();
+        Assert.assertTrue(title.contains("Demo Web Shop"));
+        logger.pass("verified home page title");
+        homePage.clickLogoutLink();
+        logger.pass("click on logout link");
+    }
+
+    @Test(priority = 5, dataProvider = "loginData",enabled = true)
+    public void testValidMultipleLogin(String email, String password) {
+        logger= report.createTest("Test Valid Login Functionality");
+        homePage.clickLoginLink();
+        logger.pass("click on login link");
+        loginPage.enterEmailID(email);
+        logger.pass("enter email id");
+        loginPage.enterPassword(password);
         logger.pass("enter password");
         loginPage.clickLoginButton();
         logger.pass("click on login button");

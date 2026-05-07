@@ -8,11 +8,13 @@ import com.webshop.base.DriverScript;
 import com.webshop.page.GiftCardsPage;
 import com.webshop.page.HomePage;
 import com.webshop.page.LoginPage;
+import com.webshop.utils.ExcelUtil;
 import com.webshop.utils.Helper;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
 import java.io.IOException;
 
@@ -59,4 +61,22 @@ public class BaseTest extends DriverScript {
         report.flush();
         quitDriver();
     }
+
+    /*
+        This data provider method will read the test data from the excel file and return it as a 2D array.
+     */
+    @DataProvider(name = "loginData")
+    public Object[][] getTestData() {
+        ExcelUtil exceldata = new ExcelUtil("./src/test/resources/testdata/wsdata.xlsx");
+        int rows = exceldata.getRowCount("usercred");
+        Object[][] data = new Object[rows][2];
+
+        for(int i=0; i<rows; i++) {
+            data[i][0] = exceldata.getCellData("usercred", i, 0);
+            data[i][1] = exceldata.getCellData("usercred", i, 1);
+        }
+        return data;
+    }
+
+
 }
