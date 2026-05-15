@@ -5,6 +5,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.webshop.base.DriverScript;
+import com.webshop.page.ComputersPage;
 import com.webshop.page.GiftCardsPage;
 import com.webshop.page.HomePage;
 import com.webshop.page.LoginPage;
@@ -25,6 +26,7 @@ public class BaseTest extends DriverScript {
     HomePage homePage;
     LoginPage loginPage;
     GiftCardsPage giftCardsPage;
+    ComputersPage computersPage;
 
     @BeforeSuite
     public void setUpReport() {
@@ -39,6 +41,7 @@ public class BaseTest extends DriverScript {
         homePage = new HomePage();
         loginPage = new LoginPage();
         giftCardsPage=new GiftCardsPage();
+        computersPage = new ComputersPage();
     }
 
     /*
