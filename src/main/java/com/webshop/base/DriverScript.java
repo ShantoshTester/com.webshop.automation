@@ -65,7 +65,24 @@ public class DriverScript {
      * This method will launch the application based on the url value from the config file
      */
     public void launchApplication() {
-        String url = prop.getProperty("url");
+        String env = prop.getProperty("env");
+        String url;
+        if(env.trim().equalsIgnoreCase("qa"))
+        {
+            url = prop.getProperty("url.qa");
+        }
+        else if(env.trim().equalsIgnoreCase("dev"))
+        {
+            url = prop.getProperty("url.dev");
+        }
+        else if(env.trim().equalsIgnoreCase("uat"))
+        {
+            url = prop.getProperty("url.uat");
+        }
+        else
+        {
+            url = prop.getProperty("url");
+        }
         driver.get(url);
     }
 
